@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 200px;
+        }
+        .verify-button, .whatsapp-button {
+            background-color: #25D366;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        .verify-button:hover, .whatsapp-button:hover {
+            background-color: #20b557;
+        }
+        .whatsapp-button {
+            display: none; /* Hidden until verification is successful */
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Contact Me</h1>
+    <p>Please verify your car number plate before contacting me on WhatsApp.</p>
+
+    <div class="form-group">
+        <label for="carNumber">Enter Your Car Number Plate:</label><br>
+        <input type="text" id="carNumber" placeholder="e.g., GJXXCAXXXX">
+        <div class="error" id="error"></div>
+    </div>
+
+    <button class="verify-button" onclick="verifyCarNumber()">Verify</button>
+
+    <a id="whatsappButton" 
+       href="https://wa.me/919876543210?text=Hi%20I%20have%20verified%20my%20car%20number%20plate%20AA33BB2222" 
+       class="whatsapp-button" 
+       target="_blank">
+        Chat with Me on WhatsApp
+    </a>
+
+    <script>
+        function verifyCarNumber() {
+            const carNumberInput = document.getElementById("carNumber").value.trim();
+          
+            const validCarNumber = "GJ03CA2336"; // Set the valid car number
+            const errorDiv = document.getElementById("error");
+            const whatsappButton = document.getElementById("whatsappButton");
+
+            // Check if the entered car number matches the valid one
+            if (carNumberInput === validCarNumber) {
+                errorDiv.textContent = ""; // Clear any error messages
+                whatsappButton.style.display = "inline-block"; // Show WhatsApp button
+                whatsappButton.href = `https://wa.me/918460589338?text=Hi%20I%20have%20verified%20my%20car%20number%20plate%20${validCarNumber}`;
+                alert("Verification successful! You can now contact me on WhatsApp.");
+            } else {
+                errorDiv.textContent = "Invalid car number plate. Please try again.";
+                whatsappButton.style.display = "none"; // Hide WhatsApp button
+            }
+        }
+    </script>
+</body>
+</html>
